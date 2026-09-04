@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - My Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.typekit.net/nnb5nol.css">
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+
+<body>
+  <nav>
+    <ul class="sidebar">
+      <li><a id="close-sidebar" href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+            width="24px">
+            <path
+              d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+          </svg></a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <ul>
+      <li class="logo">
+        <a href="index.html">
+          <img src="Assets/akshay_jayant_moving.gif" alt="Akshay Jayant Portfolio Home" class="logo-img" />
+        </a>
+      </li>
+      <li class="hideOnMobile nav-link"><a href="projects.html">Projects</a></li>
+      <li class="hideOnMobile nav-link"><a href="about.html">About</a></li>
+      <li class="hideOnMobile nav-link"><a href="contact.html">Contact</a></li>
+      <li class="menu-button"><a id="hamburger-menu" href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+            viewBox="0 -960 960 960" width="24px">
+            <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+          </svg></a></li>
+    </ul>
+  </nav>
+
+  <main class="container about-page-main">
+    <div class="scroll-animation-container">
+      <div class="sticky-wrapper">
+
+        <div class="about-image-stack">
+          <div class="headshot">
+            <img class="headshot-face doodle-image" src="Assets/wavingDude.gif" alt="Doodle of Akshay Jayant" />
+            <img class="headshot-face real-photo" src="Assets/irlHeadshot.jpg" alt="Akshay Jayant Headshot" />
+          </div>
+        </div>
+
+        <div class="about-text-stack">
+          <div class="text-block" id="philosophy-text">
+            <h1>Engineering with Purpose</h1>
+            <p class="block-text">From clean, object-oriented Core Java applications to mission-critical telecom network infrastructure, my work is driven by precision, problem-solving, and scalability. Whether architecting backend services, automating tasks on Linux, or managing high-availability networks, I bring dedicated engineering to every challenge.</p>
+          </div>
+          <div class="text-block" id="intro-text">
+            <h1>About Me</h1>
+            <p class="block-text">I'm Akshay Jayant, a Computer Science graduate, Core Java developer, and Network Engineer based in Meerut, UP. Currently working at Netzary Infodynamics managing 200+ network nodes and smart-racks for the BSNL BharatNet project. I bring hands-on Linux, troubleshooting, and production debugging experience, while actively engineering full-stack Java (Spring Boot + React) web applications. AWS Solutions Architect &amp; Azure certified.</p>
+            <a href="#" download="Akshay Jayant Resume"
+              class="resume-btn">Download Resume</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section class="timeline-section">
+    <h2 class="timeline-heading">Experience &amp; Education</h2>
+    <div class="timeline" id="js-timeline">
+      <svg class="timeline-svg" id="js-timeline-svg" aria-hidden="true">
+        <path id="js-timeline-path" class="timeline-path" />
+      </svg>
+
+      <div class="timeline-item">
+        <div class="timeline-dot" id="js-dot-0"></div>
+        <div class="timeline-content">
+          <span class="timeline-date">Dec 2025 - Present</span>
+          <h3 class="timeline-title">Network Engineer</h3>
+          <p class="timeline-company">Netzary Infodynamics, Meerut</p>
+          <p class="timeline-desc">Configure and deploy 200+ network nodes (HFCL routers) and manage smart-rack setups (Exicom EMS) in a live production environment for the BSNL BharatNet project. Perform Linux CLI configuration, log diagnostics, NMS/RFMS monitoring, and L1 troubleshooting.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot" id="js-dot-1"></div>
+        <div class="timeline-content">
+          <span class="timeline-date">2024 - Present</span>
+          <h3 class="timeline-title">Java &amp; Full-Stack Development</h3>
+          <p class="timeline-company">Personal &amp; Cloud Projects</p>
+          <p class="timeline-desc">Engineered responsive web applications (HTML/CSS/JS E-commerce) and developing full-stack Spring Boot + MySQL + React CRUD platforms. Achieved AWS Solutions Architect - Associate and Microsoft Azure Fundamentals (AZ-900) certifications.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot" id="js-dot-2"></div>
+        <div class="timeline-content">
+          <span class="timeline-date">2020 - 2024</span>
+          <h3 class="timeline-title">B.Tech, Computer Science &amp; Engineering</h3>
+          <p class="timeline-company">Meerut Institute of Engineering &amp; Technology</p>
+          <p class="timeline-desc">Built strong fundamentals in Core Java, Object-Oriented Programming (OOP), Data Structures &amp; Algorithms (DSA), Linux environments, and enterprise networking protocols.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="contact-footer">
+    <div class="footer-content-wrapper">
+      <h2 class="footer-title">Let's Build Cool Stuff!</h2>
+      <a href="contact.html" class="footer-cta-button">Get in Touch</a>
+      <div class="footer-links">
+        <a href="mailto:Akshayjayant23@gmail.com" class="footer-link">Email</a>
+        <span class="link-separator" aria-hidden="true">|</span>
+        <a href="https://www.linkedin.com/in/akshay-jayant-61023a211/" target="_blank" rel="noopener noreferrer"
+          class="footer-link">LinkedIn</a>
+        <span class="link-separator" aria-hidden="true">|</span>
+        <a href="https://github.com/37AKSHAYJAYANT" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+      </div>
+    </div>
+    <div class="footer-bottom-bar">
+      <p>&copy; 2025 AKSHAY JAYANT</p>
+    </div>
+    <div class="cursor-effects"></div>
+  </footer>
+
+  <div class="sidebar-overlay"></div>
+  <script type="module" src="./hamburger-menu.js"></script>
+  <script type="module" src="./about.js"></script>
+  <script type="module" src="./page-effects.js"></script>
+</body>
+
+</html>
+
+

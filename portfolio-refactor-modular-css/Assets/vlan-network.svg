@@ -1,0 +1,92 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#051923" />
+      <stop offset="100%" stop-color="#003554" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bgGrad3)" />
+
+  <!-- Cisco Router at the top (Router-on-a-Stick) -->
+  <g transform="translate(330, 40)">
+    <circle cx="70" cy="50" r="45" fill="#0284c7" stroke="#38bdf8" stroke-width="3" />
+    <!-- Router arrows cross -->
+    <path d="M45,50 L95,50 M70,25 L70,75" stroke="#ffffff" stroke-width="4" stroke-linecap="round" />
+    <polygon points="95,50 85,45 85,55" fill="#ffffff" />
+    <polygon points="45,50 55,45 55,55" fill="#ffffff" />
+    <polygon points="70,25 65,35 75,35" fill="#ffffff" />
+    <polygon points="70,75 65,65 75,65" fill="#ffffff" />
+    <text x="32" y="115" fill="#38bdf8" font-family="monospace" font-weight="bold" font-size="13">Cisco 2911 Router</text>
+    <text x="18" y="132" fill="#94a3b8" font-family="monospace" font-size="11">g0/0.10 (VLAN 10 GW)</text>
+    <text x="18" y="147" fill="#94a3b8" font-family="monospace" font-size="11">g0/0.20 (VLAN 20 GW)</text>
+  </g>
+
+  <!-- 802.1Q Trunk Link Line -->
+  <g stroke="#f59e0b" stroke-width="3">
+    <line x1="400" y1="160" x2="400" y2="240" />
+    <rect x="350" y="185" width="100" height="24" rx="4" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5" />
+    <text x="360" y="202" fill="#f59e0b" font-family="monospace" font-weight="bold" font-size="11">802.1Q Trunk</text>
+  </g>
+
+  <!-- Cisco Switch 2960 -->
+  <g transform="translate(290, 240)">
+    <rect width="220" height="50" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2" />
+    <!-- Switch arrows -->
+    <text x="35" y="32" fill="#ffffff" font-family="monospace" font-weight="bold" font-size="14">⚡ Cisco 2960 Switch</text>
+  </g>
+
+  <!-- Left link to VLAN 10 -->
+  <line x1="330" y1="290" x2="200" y2="360" stroke="#10b981" stroke-width="2.5" />
+  <!-- Right link to VLAN 20 -->
+  <line x1="470" y1="290" x2="600" y2="360" stroke="#a855f7" stroke-width="2.5" />
+
+  <!-- VLAN 10 Subnet Box -->
+  <g transform="translate(80, 360)">
+    <rect width="260" height="150" rx="10" fill="#064e3b" fill-opacity="0.4" stroke="#10b981" stroke-width="2" stroke-dasharray="6,4" />
+    <rect x="15" y="15" width="120" height="25" rx="4" fill="#10b981" />
+    <text x="25" y="32" fill="#ffffff" font-family="monospace" font-weight="bold" font-size="12">VLAN 10: Faculty</text>
+    <text x="15" y="65" fill="#a7f3d0" font-family="monospace" font-size="11">Subnet: 192.168.10.0/24</text>
+    <!-- Host PC 1 -->
+    <rect x="25" y="80" width="90" height="55" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5" />
+    <text x="50" y="105" font-size="18">🖥</text>
+    <text x="35" y="125" fill="#f8fafc" font-family="monospace" font-size="10">192.168.10.10</text>
+    <!-- Host PC 2 -->
+    <rect x="145" y="80" width="90" height="55" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5" />
+    <text x="170" y="105" font-size="18">🖥</text>
+    <text x="155" y="125" fill="#f8fafc" font-family="monospace" font-size="10">192.168.10.20</text>
+  </g>
+
+  <!-- VLAN 20 Subnet Box -->
+  <g transform="translate(460, 360)">
+    <rect width="260" height="150" rx="10" fill="#581c87" fill-opacity="0.4" stroke="#a855f7" stroke-width="2" stroke-dasharray="6,4" />
+    <rect x="15" y="15" width="130" height="25" rx="4" fill="#a855f7" />
+    <text x="25" y="32" fill="#ffffff" font-family="monospace" font-weight="bold" font-size="12">VLAN 20: Students</text>
+    <text x="15" y="65" fill="#e9d5ff" font-family="monospace" font-size="11">Subnet: 192.168.20.0/24</text>
+    <!-- Host PC 3 -->
+    <rect x="25" y="80" width="90" height="55" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="1.5" />
+    <text x="50" y="105" font-size="18">💻</text>
+    <text x="35" y="125" fill="#f8fafc" font-family="monospace" font-size="10">192.168.20.10</text>
+    <!-- Host PC 4 -->
+    <rect x="145" y="80" width="90" height="55" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="1.5" />
+    <text x="170" y="105" font-size="18">💻</text>
+    <text x="155" y="125" fill="#f8fafc" font-family="monospace" font-size="10">192.168.20.20</text>
+  </g>
+
+  <!-- Badges at bottom -->
+  <g transform="translate(60, 535)">
+    <rect x="0" y="0" width="165" height="34" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="14" y="22" fill="#38bdf8" font-family="sans-serif" font-weight="bold" font-size="12">Cisco Packet Tracer</text>
+
+    <rect x="180" y="0" width="145" height="34" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" />
+    <text x="18" y="22" transform="translate(180,0)" fill="#f59e0b" font-family="sans-serif" font-weight="bold" font-size="12">Router-on-a-Stick</text>
+
+    <rect x="340" y="0" width="130" height="34" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.5" />
+    <text x="16" y="22" transform="translate(340,0)" fill="#10b981" font-family="sans-serif" font-weight="bold" font-size="12">IEEE 802.1Q</text>
+
+    <rect x="485" y="0" width="120" height="34" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="1.5" />
+    <text x="18" y="22" transform="translate(485,0)" fill="#a855f7" font-family="sans-serif" font-weight="bold" font-size="12">VLAN Trunking</text>
+
+    <rect x="620" y="0" width="110" height="34" rx="8" fill="#1e293b" stroke="#F5A045" stroke-width="1.5" />
+    <text x="18" y="22" transform="translate(620,0)" fill="#F5A045" font-family="sans-serif" font-weight="bold" font-size="12">Sub-interfaces</text>
+  </g>
+</svg>

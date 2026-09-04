@@ -1,0 +1,103 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b132b" />
+      <stop offset="100%" stop-color="#1c2541" />
+    </linearGradient>
+    <linearGradient id="springGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6db33f" />
+      <stop offset="100%" stop-color="#347517" />
+    </linearGradient>
+    <linearGradient id="reactGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#61dafb" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bgGrad2)" />
+  
+  <!-- Architecture Diagram Elements -->
+  <!-- React Frontend Box -->
+  <g transform="translate(60, 100)">
+    <rect width="200" height="260" rx="12" fill="#1e293b" stroke="#61dafb" stroke-width="2" />
+    <rect width="200" height="40" rx="12" fill="#0f172a" /><rect y="28" width="200" height="12" fill="#0f172a" />
+    <text x="50" y="26" fill="#61dafb" font-family="sans-serif" font-weight="bold" font-size="14">⚛️ React Frontend</text>
+    <rect x="20" y="60" width="160" height="30" rx="6" fill="#334155" />
+    <text x="35" y="80" fill="#f8fafc" font-family="monospace" font-size="12">App.jsx</text>
+    <rect x="20" y="105" width="160" height="30" rx="6" fill="#334155" />
+    <text x="35" y="125" fill="#f8fafc" font-family="monospace" font-size="12">UserList.jsx</text>
+    <rect x="20" y="150" width="160" height="30" rx="6" fill="#334155" />
+    <text x="35" y="170" fill="#f8fafc" font-family="monospace" font-size="12">AddRecord.jsx</text>
+    <rect x="20" y="195" width="160" height="40" rx="6" fill="#0f172a" stroke="#61dafb" stroke-width="1" />
+    <text x="32" y="220" fill="#61dafb" font-family="monospace" font-size="11">Axios / Fetch API</text>
+  </g>
+
+  <!-- Connection Arrows 1 -->
+  <g transform="translate(270, 210)" stroke="#F5A045" stroke-width="2" stroke-dasharray="6,4">
+    <line x1="0" y1="0" x2="60" y2="0" />
+    <polygon points="60,0 52,-5 52,5" fill="#F5A045" />
+    <text x="5" y="-12" fill="#F5A045" font-family="monospace" font-size="10">JSON / REST</text>
+  </g>
+
+  <!-- Spring Boot Backend Box -->
+  <g transform="translate(340, 70)">
+    <rect width="210" height="320" rx="12" fill="#1e293b" stroke="#6db33f" stroke-width="2" />
+    <rect width="210" height="40" rx="12" fill="#0f172a" /><rect y="28" width="210" height="12" fill="#0f172a" />
+    <text x="40" y="26" fill="#6db33f" font-family="sans-serif" font-weight="bold" font-size="14">🌱 Spring Boot API</text>
+    
+    <rect x="20" y="55" width="170" height="45" rx="6" fill="#334155" />
+    <text x="30" y="75" fill="#6db33f" font-family="monospace" font-size="11">@RestController</text>
+    <text x="30" y="90" fill="#f8fafc" font-family="monospace" font-size="10">/api/v1/resources</text>
+
+    <rect x="20" y="115" width="170" height="45" rx="6" fill="#334155" />
+    <text x="30" y="135" fill="#6db33f" font-family="monospace" font-size="11">@Service Layer</text>
+    <text x="30" y="150" fill="#f8fafc" font-family="monospace" font-size="10">Business Logic &amp; DTO</text>
+
+    <rect x="20" y="175" width="170" height="45" rx="6" fill="#334155" />
+    <text x="30" y="195" fill="#6db33f" font-family="monospace" font-size="11">@Repository (JPA)</text>
+    <text x="30" y="210" fill="#f8fafc" font-family="monospace" font-size="10">Hibernate ORM Queries</text>
+
+    <rect x="20" y="235" width="170" height="65" rx="6" fill="#0f172a" stroke="#6db33f" stroke-width="1" />
+    <text x="30" y="255" fill="#f8fafc" font-family="sans-serif" font-weight="bold" font-size="11">CRUD Operations:</text>
+    <text x="30" y="272" fill="#38bdf8" font-family="monospace" font-size="10">GET | POST | PUT | DELETE</text>
+    <text x="30" y="288" fill="#a3e635" font-family="monospace" font-size="10">Maven Build Lifecycle</text>
+  </g>
+
+  <!-- Connection Arrows 2 -->
+  <g transform="translate(560, 210)" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6,4">
+    <line x1="0" y1="0" x2="50" y2="0" />
+    <polygon points="50,0 42,-5 42,5" fill="#38bdf8" />
+    <text x="5" y="-12" fill="#38bdf8" font-family="monospace" font-size="10">JDBC</text>
+  </g>
+
+  <!-- MySQL Database Cylinder -->
+  <g transform="translate(620, 120)">
+    <rect width="130" height="220" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="2" />
+    <rect width="130" height="35" rx="10" fill="#0f172a" /><rect y="25" width="130" height="10" fill="#0f172a" />
+    <text x="25" y="24" fill="#f59e0b" font-family="sans-serif" font-weight="bold" font-size="13">🐬 MySQL</text>
+
+    <!-- Disks -->
+    <ellipse cx="65" cy="65" rx="45" ry="14" fill="#334155" stroke="#f59e0b" stroke-width="1" />
+    <ellipse cx="65" cy="115" rx="45" ry="14" fill="#334155" stroke="#f59e0b" stroke-width="1" />
+    <ellipse cx="65" cy="165" rx="45" ry="14" fill="#334155" stroke="#f59e0b" stroke-width="1" />
+
+    <text x="32" y="198" fill="#f8fafc" font-family="monospace" font-size="10">Schemas &amp; Tables</text>
+  </g>
+
+  <!-- Badges at bottom -->
+  <g transform="translate(80, 460)">
+    <rect x="0" y="0" width="125" height="36" rx="8" fill="#1e293b" stroke="#6db33f" stroke-width="1.5" />
+    <text x="18" y="23" fill="#6db33f" font-family="sans-serif" font-weight="bold" font-size="13">Spring Boot</text>
+
+    <rect x="145" y="0" width="105" height="36" rx="8" fill="#1e293b" stroke="#61dafb" stroke-width="1.5" />
+    <text x="162" y="23" fill="#61dafb" font-family="sans-serif" font-weight="bold" font-size="13">React.js</text>
+
+    <rect x="270" y="0" width="105" height="36" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" />
+    <text x="288" y="23" fill="#f59e0b" font-family="sans-serif" font-weight="bold" font-size="13">MySQL</text>
+
+    <rect x="395" y="0" width="115" height="36" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="412" y="23" fill="#38bdf8" font-family="sans-serif" font-weight="bold" font-size="13">REST APIs</text>
+
+    <rect x="530" y="0" width="110" height="36" rx="8" fill="#1e293b" stroke="#F5A045" stroke-width="1.5" />
+    <text x="548" y="23" fill="#F5A045" font-family="sans-serif" font-weight="bold" font-size="13">Core Java</text>
+  </g>
+</svg>
