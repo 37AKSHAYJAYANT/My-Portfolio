@@ -4,6 +4,8 @@ function sendEmail(event) {
   // Get form values and trim whitespace
   var name = document.getElementById('name').value.trim();
   var email = document.getElementById('email').value.trim();
+  var countryCodeSelect = document.getElementById('country-code');
+  var countryCode = countryCodeSelect ? countryCodeSelect.value.trim() : '';
   var phone = document.getElementById('phone').value.trim();
   var message = document.getElementById('message').value.trim();
   
@@ -31,23 +33,16 @@ function sendEmail(event) {
     showError('email', 'Please enter a valid email address');
   }
 
-  // Phone validate format
+  // Phone validate format (optional)
   if (phone && !isValidPhone(phone)) {
     hasErrors = true;
-    showError('phone', 'Please enter a valid phone number in format: (555) 123-4567');
+    showError('phone', 'Please enter a valid mobile number (7 to 15 digits, numbers only)');
   }
 
+  // Message validate: required, no word or character limit restrictions
   if (!message) {
     hasErrors = true;
     showError('message', 'Message is required');
-  } 
-  else if (message.length < 50) {
-    hasErrors = true;
-    showError('message', `Message must be at least 50 characters long. ${50 - message.length} characters remaining.`);
-  } 
-  else if (message.length > 2000) {
-    hasErrors = true;
-    showError('message', `Message is too long. Please reduce by ${message.length - 2000} characters.`);
   }
 
   if (hasErrors) {
@@ -62,9 +57,26 @@ function sendEmail(event) {
   var fromField = document.getElementById('from_field');
   fromField.value = name + ' <' + email + '>';
 
+  var fullPhone = phone ? (countryCode ? (countryCode + ' ' + phone) : phone) : '';
+
   var submitButton = event.target.querySelector('button[type="submit"]');
   setButtonLoading(submitButton, true);
 
+  // 1. Save to Spring Boot Backend (PostgreSQL)
+  fetch('http://localhost:8080/api/contact', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: name, email: email, phone: fullPhone, message: message })
+  })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      console.log('Saved to Spring Boot backend:', data);
+    })
+    .catch(function(err) {
+      console.warn('Backend offline or unavailable, continuing with EmailJS:', err);
+    });
+
+  // 2. Dispatch EmailJS notification
   emailjs.sendForm('service_48b6ao1', 'template_rn6shkd', event.target)
     .then(function() {
       showFormMessage('Thank you! Your message has been sent successfully. I\'ll get back to you soon.', 'success');
@@ -89,8 +101,8 @@ function isValidEmail(email) {
 }
 
 function isValidPhone(phone) {
-  var phonePattern = /^\(\d{3}\) \d{3}-\d{4}$/;
-  return phonePattern.test(phone);
+  // Mobile number must contain only numbers (no parentheses, hyphens, or special characters)
+  return /^\d{7,15}$/.test(phone.trim());
 }
 
 function showError(fieldId, message) {
@@ -186,20 +198,8 @@ function setButtonLoading(button, isLoading) {
 function updateMessageCounter() {
   var messageField = document.getElementById('message');
   var counter = document.getElementById('message-counter');
-  var currentLength = messageField.value.length;
-  var minLength = 50;
-  var maxLength = 2000;
-  
-  counter.textContent = currentLength + '/' + minLength;
-  
-  // Update counter styling based on length
-  counter.classList.remove('warning', 'valid');
-  if (currentLength >= minLength) {
-    counter.classList.add('valid');
-    counter.textContent = currentLength + '/' + maxLength;
-  } else if (currentLength > minLength * 0.8) {
-    counter.classList.add('warning');
-  }
+  if (!counter || !messageField) return;
+  counter.textContent = messageField.value.length;
 }
 
 function setupRealTimeValidation() {
@@ -254,7 +254,13 @@ function setupRealTimeValidation() {
       if (phone && isValidPhone(phone)) {
         showSuccess('phone');
       } else if (phone && !isValidPhone(phone)) {
-        showError('phone', 'Please enter a valid phone number in format: (555) 123-4567');
+        showError('phone', 'Please enter a valid mobile number (7 to 15 digits, numbers only)');
+      }
+    });
+
+    phoneField.addEventListener('input', function() {
+      if (this.classList.contains('error-field')) {
+        clearError('phone');
       }
     });
   }
@@ -271,10 +277,8 @@ function setupRealTimeValidation() {
     messageField.addEventListener('blur', function() {
       var message = this.value.trim();
       clearError('message');
-      if (message && message.length >= 50) {
+      if (message) {
         showSuccess('message');
-      } else if (message && message.length < 50) {
-        showError('message', `Message must be at least 50 characters long. ${50 - message.length} characters remaining.`);
       }
     });
   }
@@ -284,19 +288,23 @@ function setupPhoneFormatting() {
   var phoneInput = document.getElementById('phone');
   
   if (phoneInput) {
-    phoneInput.addEventListener('input', function(e) {
-      let x = phoneInput.value.replace(/\D/g, '').substring(0, 10);
-      let formatted = '';
-      if (x.length > 0) {
-        formatted = '(' + x.substring(0, 3);
+    // Prevent typing '(', ')', '-', '+', or space characters directly
+    phoneInput.addEventListener('keydown', function(e) {
+      if (['(', ')', '-', '+', ' '].includes(e.key)) {
+        e.preventDefault();
       }
-      if (x.length >= 4) {
-        formatted += ') ' + x.substring(3, 6);
-      }
-      if (x.length >= 7) {
-        formatted += '-' + x.substring(6, 10);
-      }
-      phoneInput.value = formatted;
+    });
+
+    // Remove '()', '-', spaces, and all non-numeric characters immediately on input
+    phoneInput.addEventListener('input', function() {
+      this.value = this.value.replace(/\D/g, '');
+    });
+
+    // Clean up pasted input
+    phoneInput.addEventListener('paste', function() {
+      setTimeout(function() {
+        phoneInput.value = phoneInput.value.replace(/\D/g, '');
+      }, 0);
     });
   }
 }
@@ -332,7 +340,7 @@ function adjustTextareaHeight() {
 
 // #endregion
 
-document.addEventListener('DOMContentLoaded', function() {
+function initContact() {
   var form = document.querySelector('form');
   
   if (form) {
@@ -353,4 +361,10 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   window.addEventListener('resize', adjustTextareaHeight);
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initContact);
+} else {
+  initContact();
+}

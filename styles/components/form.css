@@ -77,6 +77,7 @@ form label {
 form input[type="text"],
 form input[type="email"],
 form input[type="tel"],
+form select.country-code-select,
 form textarea {
   width: 100%;
   max-width: none;
@@ -90,7 +91,28 @@ form textarea {
   background-color: var(--color-white);
 }
 
+/* Phone input group with country code select */
+.phone-input-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+
+.country-code-select {
+  flex: 0 0 150px;
+  max-width: 155px;
+  cursor: pointer;
+  background-position: right 0.5rem center;
+  font-size: 0.95rem;
+}
+
+.phone-input-group input[type="tel"] {
+  flex: 1;
+  min-width: 0;
+}
+
 form input:focus,
+form select:focus,
 form textarea:focus {
   outline: none;
   border-color: var(--color-primary);

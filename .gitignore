@@ -12,3 +12,7 @@ desktop.ini
 # Temporary & Log Files
 *.log
 *.bak
+
+# Build & Dependency Directories
+target/
+backend/target/
