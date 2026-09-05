@@ -1,8 +1,9 @@
-# Akshay Jayant — Engineering, Developer & Design Portfolio
+# Akshay Jayant — Full-Stack & Network Engineering Portfolio
 
-A multi-page interactive portfolio website showcasing Software Engineering and Network Engineering projects. Built entirely with vanilla HTML, CSS, and JavaScript — no frameworks, no build tools, no bundlers.
+A multi-page interactive portfolio website showcasing Software Engineering and Network Engineering projects. Features a high-performance vanilla frontend (zero frameworks, modular CSS) backed by a robust **Java Spring Boot** REST API with a local **PostgreSQL** database and resilient **EmailJS** delivery.
 
-> **Note:** Interactive features such as the drag-and-drop API on the landing page work best on Desktop. The website supports responsive design for devices as small as 320px in width.
+> **Live Deployment:** [37akshayjayant.github.io](https://37akshayjayant.github.io)  
+> **Interactive Features:** Drag-and-drop navigation, scroll-driven 3D card flips, SVG timeline, and international contact form.
 
 ---
 
@@ -25,14 +26,17 @@ A multi-page interactive portfolio website showcasing Software Engineering and N
 - **Scroll-locked 3D card flip** — a 4-phase state machine (wheel + touch) flips the headshot from cartoon avatar to real photo while cross-fading bio text
 - **Procedural SVG timeline** — dynamically generated Bezier path with organic wobble, drawn progressively on scroll using `strokeDashoffset` with LERP smoothing
 - **Progressive reveals** — timeline dots and career cards appear synchronized with the SVG line progression
-- **Resume download** button
+- **Resume download** button serving the PDF directly
 
 ### 📬 Contact Page
-- **Real-time form validation** with eager error recovery (errors clear as you type)
-- **US phone auto-formatting** — strips non-digits and formats as `(XXX) XXX-XXXX`
-- **Live character counter** — color transitions from neutral → warning → valid (50–2000 chars)
-- **EmailJS integration** — client-side email dispatch without a backend server
-- **Full accessibility** — `aria-invalid`, `aria-describedby`, `aria-live`, `role="alert"`, auto-focus on first error
+- **Country Code Selector** — international dropdown (`<select id="country-code">`) with flag emojis and calling codes for 20+ major regions (🇮🇳 `+91` default)
+- **Clean Numeric Mobile Input** — hardware keydown blocking and automatic sanitization against parentheses `()`, hyphens `-`, spaces, and non-digits. Only pure numeric digits are accepted
+- **No Word or Length Restrictions** — eliminated 50-character minimum restriction and counter warning styling; allows messages of any length (from short greetings to detailed project inquiries)
+- **Dual-Engine Delivery**:
+  1. **Spring Boot Backend**: Persists message submissions to PostgreSQL (`contact_messages` table)
+  2. **EmailJS Integration**: Dispatches notifications straight to personal Gmail inbox without requiring a public backend on GitHub Pages
+  3. **Direct Fallback Link**: Smart fallback providing an instant clickable link to `Akshayjayant23@gmail.com` if offline
+- **Full Accessibility** — `aria-invalid`, `aria-describedby`, `aria-live`, `role="alert"`, auto-focus on first error
 
 ### ♿ Accessibility & Responsiveness
 - `prefers-reduced-motion` compliance across all animations (bypasses scroll-jacking, reveals content statically)
@@ -47,72 +51,115 @@ A multi-page interactive portfolio website showcasing Software Engineering and N
 
 | Category | Technology |
 |---|---|
-| **Markup** | HTML5 (semantic, accessible) |
-| **Styling** | CSS3 (modular architecture, custom properties, animations) |
-| **Scripting** | Vanilla JavaScript (ES Modules) |
-| **Email Service** | [EmailJS](https://www.emailjs.com/) v3 (via CDN) |
+| **Frontend Markup** | HTML5 (semantic, accessible, SEO-optimized) |
+| **Styling** | Modular CSS3 (ITCSS architecture, CSS custom properties, flexbox/grid) |
+| **Scripting** | Vanilla JavaScript (ES Modules, zero dependencies) |
+| **Backend Framework** | **Java 18**, **Spring Boot 3.2.5** (Spring Web, Spring Data JPA, Hibernate) |
+| **Database** | **PostgreSQL** (production) / **H2 In-Memory DB** (dev/test profile) |
+| **Build Tool** | **Apache Maven 3.9** |
+| **Email Service** | [EmailJS](https://www.emailjs.com/) v3 (browser SDK via CDN) |
 | **Fonts** | [Google Fonts](https://fonts.google.com/) (Nunito) + [Adobe Typekit](https://fonts.adobe.com/) (Interstate Mono) |
-| **Build Tools** | None — zero-config, no bundlers |
 
 ---
 
 ## 📁 Project Structure
 
 ```
-├── index.html                     # Landing / Home page
-├── about.html                     # About & Experience
-├── contact.html                   # Contact form
-├── projects.html                  # Projects (Software & Network Engineering)
+├── index.html                         # Landing / Home page
+├── about.html                         # About & Experience page
+├── contact.html                       # Contact form page
+├── projects.html                      # Projects showcase page
 │
-├── landing-page.js                # Typewriter, drag-and-drop, scroll effects
-├── about.js                       # Scroll-locked card flip, SVG timeline
-├── contact.js                     # Form validation, EmailJS dispatch
-├── projects.js                    # Accordions, entrance animations, magnetic cursor
-├── hamburger-menu.js              # Mobile navigation drawer
-├── page-effects.js                # Footer cursor spotlight effect
-├── email-handler.js               # Smart email link with Gmail fallback
+├── landing-page.js                    # Typewriter, drag-and-drop, dock transitions
+├── about.js                           # Scroll-locked 3D card flip & SVG timeline
+├── contact.js                         # Validation, country code handling, EmailJS & API dispatch
+├── projects.js                        # Accordions, entrance animations, magnetic cursor
+├── hamburger-menu.js                  # Mobile navigation drawer controller
+├── page-effects.js                    # Footer cursor spotlight effect
+├── email-handler.js                   # Smart email link with Gmail compose fallback
 │
-├── styles/                        # Modular CSS architecture
-│   ├── main.css                   # Entry point (ordered @imports)
-│   ├── tokens.css                 # Design tokens & CSS custom properties
-│   ├── base.css                   # Reset, body defaults, scrollbar
-│   ├── typography.css             # Font assignments
-│   ├── responsive.css             # Global media queries
-│   ├── components/                # Reusable UI components
-│   │   ├── nav.css                #   Sticky navbar & pill links
-│   │   ├── hamburger.css          #   Mobile menu button
-│   │   ├── sidebar.css            #   Slide-out drawer & overlay
-│   │   ├── footer.css             #   Curved sticky footer
-│   │   ├── form.css               #   Contact form & validation states
-│   │   ├── timeline.css           #   Career timeline & SVG spine
-│   │   └── cursor.css             #   Cursor follower effects
-│   ├── pages/                     # Page-specific styles
-│   │   ├── landing.css            #   Hero, typewriter, drag-and-drop dock
-│   │   ├── projects.css           #   Accordions & project cards
-│   │   ├── about.css              #   3D flip headshot, bio text stack
-│   │   └── temp.css               #   Scroll spacer sections
-│   └── utilities/                 # Cross-cutting concerns
-│       ├── animations.css         #   Keyframes & stagger utilities
-│       ├── focus.css              #   :focus-visible rings
-│       ├── touch-hint.css         #   Touch device fallbacks
-│       └── accessibility.css      #   Reduced motion & high contrast
+├── styles/                            # Modular CSS architecture
+│   ├── main.css                       # Root stylesheet (ordered @imports)
+│   ├── tokens.css                     # Design tokens & CSS custom properties
+│   ├── base.css                       # Reset, body defaults, scrollbar
+│   ├── typography.css                 # Font declarations
+│   ├── responsive.css                 # Global responsive media queries
+│   ├── components/                    # Reusable UI component stylesheets
+│   │   ├── nav.css                    #   Navbar & menu links
+│   │   ├── hamburger.css              #   Mobile hamburger button
+│   │   ├── sidebar.css                #   Slide-out drawer & overlay
+│   │   ├── footer.css                 #   Curved footer with spotlight
+│   │   ├── form.css                   #   Contact form, country code select & validation states
+│   │   ├── timeline.css               #   Career timeline & SVG spine
+│   │   └── cursor.css                 #   Magnetic cursor follower
+│   ├── pages/                         # Page-specific stylesheets
+│   │   ├── landing.css                #   Hero, typewriter, drag-and-drop dock
+│   │   ├── projects.css               #   Accordions & project cards
+│   │   └── about.css                  #   3D flip headshot & bio stack
+│   └── utilities/                     # Cross-cutting utility styles
+│       ├── animations.css             #   Keyframes & stagger utilities
+│       ├── focus.css                  #   Accessible focus-visible rings
+│       ├── touch-hint.css             #   Touch device fallbacks
+│       └── accessibility.css          #   Reduced motion & high contrast
 │
-└── Assets/
-    ├── akshay_jayant_moving.gif   # Animated brand logo
-    ├── wavingDude.gif             # Animated character illustration
-    ├── profile image.jpeg         # Profile headshot photo
-    ├── Akshay_Jayant_Resume.pdf   # Resume PDF document
-    ├── ecommerce-project.svg      # E-Commerce project card artwork
-    ├── fullstack-crud.svg         # Full-Stack CRUD project card artwork
-    ├── vlan-network.svg           # VLAN & routing project card artwork
-    └── bharatnet-telecom.svg      # BharatNet telecom project card artwork
+├── Assets/                            # Brand assets, project graphics, resume PDF
+│   ├── akshay_jayant_moving.gif       # Brand logo animation
+│   ├── profile image.jpeg             # Profile headshot
+│   ├── Akshay_Jayant_Resume.pdf       # Printable Resume PDF
+│   ├── ecommerce-project.svg          # E-Commerce artwork
+│   ├── fullstack-crud.svg             # CRUD system artwork
+│   ├── vlan-network.svg               # VLAN & routing artwork
+│   └── bharatnet-telecom.svg          # BharatNet telecom artwork
+│
+└── backend/                           # Java Spring Boot REST API
+    ├── pom.xml                        # Maven configuration & dependencies
+    └── src/
+        ├── main/
+        │   ├── java/com/akshay/portfolio/
+        │   │   ├── PortfolioApplication.java       # Spring Boot main class
+        │   │   ├── config/
+        │   │   │   ├── CorsConfig.java             # CORS mappings for frontend & GitHub Pages
+        │   │   │   └── DataInitializer.java        # Database seeder on application startup
+        │   │   ├── controller/
+        │   │   │   ├── ContactController.java      # REST endpoints for contact messages
+        │   │   │   └── ProjectController.java      # REST endpoints for project catalog
+        │   │   ├── dto/                            # Data Transfer Objects & validation
+        │   │   ├── entity/                         # JPA Entities (Project, ContactMessage)
+        │   │   ├── exception/                      # Global exception handler
+        │   │   ├── repository/                     # Spring Data JPA repositories
+        │   │   └── service/                        # Business logic services
+        │   └── resources/
+        │       ├── application.properties          # PostgreSQL configuration
+        │       └── application-dev.properties      # H2 in-memory dev profile
+        └── test/                                   # MockMvc integration tests
 ```
+
+---
+
+## 🔌 REST API Endpoints
+
+The Spring Boot backend exposes clean RESTful endpoints:
+
+### Projects API
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/projects` | List all published projects (sorted by display order) |
+| `GET` | `/api/projects?category=SOFTWARE_ENGINEERING` | Filter projects by category (`SOFTWARE_ENGINEERING`, `NETWORK_ENGINEERING`) |
+| `POST` | `/api/projects` | Add a new project |
+
+### Contact API
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/contact` | Submit a new contact message (JSON payload: name, email, phone, message) |
+| `GET` | `/api/contact` | Retrieve all submitted messages (admin) |
+| `PATCH` | `/api/contact/{id}/status?status=READ` | Update message status (`UNREAD` / `READ` / `ARCHIVED`) |
 
 ---
 
 ## 🚀 Getting Started
 
-No build step required. Just serve the files with any static server:
+### 1. Frontend (Static Web Server)
+Serve the repository root using any static server:
 
 ```bash
 # Using Python
@@ -120,12 +167,29 @@ python -m http.server 8000
 
 # Using Node.js (npx)
 npx serve .
-
-# Using VS Code
-# Install the "Live Server" extension and click "Go Live"
 ```
 
 Then open `http://localhost:8000` in your browser.
+
+### 2. Backend (Java Spring Boot)
+Make sure **Java 18+** and **Maven 3.9+** are installed:
+
+```bash
+cd backend
+
+# Run with in-memory H2 database (dev profile — zero configuration required)
+mvn spring-boot:run -Dspring-boot.run.profiles=dev
+
+# Or run tests
+mvn test
+
+# Package JAR & run
+mvn package -DskipTests
+java -Dspring.profiles.active=dev -jar target/portfolio-backend-1.0.0.jar
+```
+
+- **Backend Base URL:** `http://localhost:8080`
+- **H2 Web Console:** `http://localhost:8080/h2-console` (`jdbc:h2:mem:portfolio_db`, User: `sa`, Password: *empty*)
 
 ---
 
