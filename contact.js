@@ -62,32 +62,55 @@ function sendEmail(event) {
   var submitButton = event.target.querySelector('button[type="submit"]');
   setButtonLoading(submitButton, true);
 
-  // 1. Save to Spring Boot Backend (PostgreSQL)
-  fetch('http://localhost:8080/api/contact', {
+  var formElement = event.target;
+
+  // 1. Attempt Spring Boot Backend Save (PostgreSQL)
+  var backendPromise = fetch('http://localhost:8080/api/contact', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name: name, email: email, phone: fullPhone, message: message })
   })
-    .then(function(res) { return res.json(); })
+    .then(function(res) {
+      if (!res.ok) throw new Error('Backend HTTP ' + res.status);
+      return res.json();
+    })
     .then(function(data) {
       console.log('Saved to Spring Boot backend:', data);
+      return true;
     })
     .catch(function(err) {
-      console.warn('Backend offline or unavailable, continuing with EmailJS:', err);
+      console.warn('Backend unavailable (expected on GitHub Pages):', err.message);
+      return false;
     });
 
-  // 2. Dispatch EmailJS notification
-  emailjs.sendForm('service_48b6ao1', 'template_rn6shkd', event.target)
-    .then(function() {
-      showFormMessage('Thank you! Your message has been sent successfully. I\'ll get back to you soon.', 'success');
-      event.target.reset();
-      clearErrorMessages();
-      updateMessageCounter();
-      resetFieldStates();
-    }, 
-    function(error) {
-      console.error('EmailJS Error:', error);
-      showFormMessage('Sorry, there was a problem sending your message. Please try again or contact me directly.', 'error');
+  // 2. Attempt EmailJS notification
+  var emailjsPromise = emailjs.sendForm('service_48b6ao1', 'template_rn6shkd', formElement)
+    .then(function(res) {
+      console.log('EmailJS dispatched successfully:', res);
+      return true;
+    })
+    .catch(function(err) {
+      console.error('EmailJS Error:', err);
+      return false;
+    });
+
+  Promise.all([backendPromise, emailjsPromise])
+    .then(function(results) {
+      var backendSuccess = results[0];
+      var emailjsSuccess = results[1];
+
+      if (backendSuccess || emailjsSuccess) {
+        showFormMessage('Thank you! Your message has been sent successfully. I\'ll get back to you soon.', 'success');
+        formElement.reset();
+        clearErrorMessages();
+        updateMessageCounter();
+        resetFieldStates();
+      } else {
+        showFormMessage(
+          'Sorry, there was a problem delivering your message. Please email me directly at <a href="mailto:Akshayjayant23@gmail.com" style="color: inherit; text-decoration: underline; font-weight: bold;">Akshayjayant23@gmail.com</a>.',
+          'error'
+        );
+      }
     })
     .finally(function() {
       setButtonLoading(submitButton, false);
@@ -170,7 +193,7 @@ function focusFirstErrorField() {
 
 function showFormMessage(message, type) {
   var messageDiv = document.getElementById('form-messages');
-  messageDiv.textContent = message;
+  messageDiv.innerHTML = message;
   messageDiv.className = 'form-messages ' + type;
   messageDiv.style.display = 'block';
   
