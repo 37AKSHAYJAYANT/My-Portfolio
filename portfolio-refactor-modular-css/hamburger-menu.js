@@ -19,15 +19,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Hide sidebar
-    overlay.addEventListener('click', hideSidebar);
+    if (overlay) {
+        overlay.addEventListener('click', hideSidebar);
+    }
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+        if (e.key === 'Escape' && sidebar && sidebar.classList.contains('active')) {
             hideSidebar();
         }
     });
     window.addEventListener('resize', function() {
         const isDesktop = window.innerWidth > 768;
-        if (isDesktop && sidebar.classList.contains('active')) {
+        if (isDesktop && sidebar && sidebar.classList.contains('active')) {
             hideSidebar();
         }
     });

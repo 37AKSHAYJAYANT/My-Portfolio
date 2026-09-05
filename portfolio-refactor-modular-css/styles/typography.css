@@ -21,7 +21,6 @@ a {
 /* Components that use the secondary font for headings */
 .footer-title,
 .section-title,
-.project-info h3,
 .container h1 {
   font-family: var(--font-secondary);
 }

@@ -18,7 +18,6 @@ let draggableItems = null;
 let animationsStarted = false;
 let animationsComplete = false;
 let isTyping = false;
-let isDragging = false;
 let scrollFadeTimeout;
 let initialOrder = []; // Var to store order of Categories in the selection bank
 
@@ -187,10 +186,6 @@ window.addEventListener('scroll', () => {
                             getData: () => selectedCategory.id
                         }
                     });
-
-                    if (typeof resetWaveAnimation === 'function') {
-                        resetWaveAnimation(selectedCategory);
-                    }
                 }
             }
         }
@@ -279,17 +274,6 @@ function handleDrop(event) {
     }
 }
 
-function handleDragEnter(event) {
-    event.preventDefault();
-}
-
-function handleDragLeave(event) {
-    // Reset the text to default
-    if (typewriterElement && typewriterElement.classList.contains('scrolled')) {
-        typewriterElement.textContent = initialText + " a";
-    }
-}
-
 function handleReturnDrop(event) {
     event.preventDefault();
     const draggedItemId = event.dataTransfer.getData("text/plain");
@@ -317,21 +301,11 @@ function handleReturnDrop(event) {
         }
     }
 
-    isDragging = false;
-
     if (typewriterElement && typewriterElement.classList.contains('scrolled')) {
         const isDropZoneEmpty = !categoryDropZoneElement.querySelector('.draggable-item');
         if (isDropZoneEmpty) {
             typewriterElement.textContent = initialText + " a";
         }
-    }
-}
-
-function getSelectedCategory() {
-    if (draggableItems) {
-        return categoryDropZoneElement.id;
-    } else {
-        return null;
     }
 }
 // #endregion

@@ -162,10 +162,6 @@
   opacity: 0;
 }
 
-.categorySelect.visible {
-  opacity: 1;
-}
-
 .categorySelect.scrolled {
   animation: wave 3s ease-in-out infinite;
   opacity: 1;

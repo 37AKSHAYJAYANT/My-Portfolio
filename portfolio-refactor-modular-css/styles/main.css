@@ -16,7 +16,7 @@
 @import url('./typography.css');
 
 /* ---- Global components (header / chrome / sidebar) ---- */
-@import url('./components/nav.css');
+@import url('./components/nav.css?v=2');
 @import url('./components/hamburger.css');
 @import url('./components/sidebar.css');
 
@@ -34,7 +34,7 @@
 @import url('./components/form.css');
 
 /* ---- About + timeline + cursor ---- */
-@import url('./pages/about.css');
+@import url('./pages/about.css?v=2');
 @import url('./components/timeline.css');
 @import url('./components/cursor.css');
 

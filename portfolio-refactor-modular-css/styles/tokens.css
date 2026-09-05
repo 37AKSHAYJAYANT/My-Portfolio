@@ -10,7 +10,6 @@
   --color-white: #ffffff;
 
   --color-error-bg: #f87680;
-  --color-error-border: #f5c6cb;
   --color-success-validation: rgb(69, 201, 80);
 
   /* Transparent & shadow colors */
@@ -72,5 +71,4 @@
   /* ===== TRANSFORMS ===== */
   --transform-scale-hover: scale(1.1);
   --transform-scale-hover-small: scale(1.05);
-  --transform-translate-up-small: translateY(-3px);
 }

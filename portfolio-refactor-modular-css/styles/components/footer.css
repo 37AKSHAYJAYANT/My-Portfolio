@@ -1,6 +1,5 @@
 .contact-footer {
   position: sticky;
-  z-index: var(--z-base);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -36,14 +35,6 @@
   margin-bottom: 1rem;
 }
 
-.footer-subtitle {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  color: var(--color-black);
-  max-width: 550px;
-  line-height: 1.6;
-  margin: 0 auto 1.5rem;
-}
-
 .footer-cta-button {
   display: inline-block;
   font-weight: 600;
@@ -73,6 +64,7 @@
   font-weight: 500;
   color: var(--color-black);
   position: relative;
+  cursor: pointer;
 }
 
 .footer-link::after {

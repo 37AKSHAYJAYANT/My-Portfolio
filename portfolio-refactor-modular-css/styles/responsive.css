@@ -50,10 +50,6 @@
     white-space: nowrap;
   }
 
-  .about-container {
-    flex-direction: column;
-  }
-
   .scroll-down-text {
     position: fixed;
     top: calc(50vh + 4rem);

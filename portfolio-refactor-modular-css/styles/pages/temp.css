@@ -5,9 +5,3 @@
   text-align: center;
 }
 
-.temp-section-small {
-  min-height: 100dvh;
-  padding: var(--gap-xl) 0;
-  background: var(--color-white);
-  text-align: center;
-}

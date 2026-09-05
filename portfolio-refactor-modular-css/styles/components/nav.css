@@ -1,10 +1,10 @@
 nav {
   background: transparent;
-  padding: clamp(0.5rem, 2vh, 1rem) 0;
+  padding: clamp(0.5rem, 1.5vh, 1rem) 0;
   position: sticky;
   top: 0;
   z-index: var(--z-nav);
-  height: clamp(60px, 10vh, 80px);
+  min-height: clamp(70px, 10vh, 90px);
   display: flex;
   align-items: center;
 }
@@ -23,10 +23,12 @@ nav ul {
 .logo {
   position: absolute;
   left: clamp(0.5rem, 1vw, 2vw);
+  display: flex;
+  align-items: center;
 }
 
 .logo-img {
-  height: clamp(38px, 9vw, 48px);
+  height: clamp(55px, 8vw, 75px) !important;
   width: auto;
   display: block;
   transition: transform var(--duration-medium) var(--ease-logo-hover),

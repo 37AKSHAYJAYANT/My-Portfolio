@@ -69,7 +69,8 @@ A multi-page interactive portfolio website showcasing Software Engineering and N
 ├── contact.js                     # Form validation, EmailJS dispatch
 ├── projects.js                    # Accordions, entrance animations, magnetic cursor
 ├── hamburger-menu.js              # Mobile navigation drawer
-├── page-effects.js                # Footer spotlight, navbar theme switching
+├── page-effects.js                # Footer cursor spotlight effect
+├── email-handler.js               # Smart email link with Gmail fallback
 │
 ├── styles/                        # Modular CSS architecture
 │   ├── main.css                   # Entry point (ordered @imports)
@@ -99,12 +100,12 @@ A multi-page interactive portfolio website showcasing Software Engineering and N
 └── Assets/
     ├── akshay_jayant_moving.gif   # Animated brand logo
     ├── wavingDude.gif             # Animated character illustration
-    ├── irlHeadshot.jpg            # Headshot photo
+    ├── profile image.jpeg         # Profile headshot photo
+    ├── Akshay_Jayant_Resume.pdf   # Resume PDF document
     ├── ecommerce-project.svg      # E-Commerce project card artwork
     ├── fullstack-crud.svg         # Full-Stack CRUD project card artwork
     ├── vlan-network.svg           # VLAN & routing project card artwork
-    ├── bharatnet-telecom.svg      # BharatNet telecom project card artwork
-    └── ...                        # Navigation UI icons (menu, close)
+    └── bharatnet-telecom.svg      # BharatNet telecom project card artwork
 ```
 
 ---
