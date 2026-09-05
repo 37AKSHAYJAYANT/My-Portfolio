@@ -84,7 +84,7 @@ function sendEmail(event) {
     });
 
   // 2. Attempt EmailJS notification
-  var emailjsPromise = emailjs.sendForm('service_48b6ao1', 'template_rn6shkd', formElement)
+  var emailjsPromise = emailjs.sendForm('service_do9m16e', 'template_0iblczt', formElement)
     .then(function(res) {
       console.log('EmailJS dispatched successfully:', res);
       return true;
