@@ -1,8 +1,7 @@
 nav {
   background: transparent;
   padding: clamp(0.5rem, 1.5vh, 1rem) 0;
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: var(--z-nav);
   min-height: clamp(70px, 10vh, 90px);
   display: flex;
